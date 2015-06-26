@@ -7,22 +7,21 @@
 var getElementsByClassName = function(className){
   // Create an array to store the nodes identified by the className
   var nodeList = [];
-
+  var containsClassName = RegExp('(^|\\s)'+className+'(\\s|$)');
   // Recursive function
   function recurse(node) {
   	
-  	if (node.className === className) {
+  	if (containsClassName.test(node.className)) {
   		nodeList.push(node);
   	}
 
   	_.each(node.children, function(child){
+  		// Recurse
   		recurse(child);
   		//debugger;
   	});
   	
-  	// Run through the document.body
-  	// Look for the node specified by the className specified
-  	// Store that node into the array
+  	
 	}
   // Recurse
 
