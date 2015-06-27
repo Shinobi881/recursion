@@ -29,33 +29,34 @@ var stringifyJSON = function(obj) {
 
 	// Object testing
 	if (obj.constructor === Array) {
-	  		if (obj.length === 0) {
-	  			return '[]';
-	  		} else {
-	  			result = '['
-	  			_.each(obj, function(element){result += stringifyJSON(element) + ','});
-	  		console.log('Result for array', result); 
+		if (obj.length === 0) {
+			return '[]';
+		} else {
+			result = '['
+			_.each(obj, function(element){result += stringifyJSON(element) + ','});
+			console.log('Result for array', result); 
 
-	  		if(result[result.length-1] === ","){
-	   			result = result.slice(0, -1);}
-	  		return result += ']';
-	  		}
-	  	}
+			if(result[result.length-1] === ","){
+				result = result.slice(0, -1);}
+				return result += ']';
+			}
+	}
 // -----------------------------------------------
 
 	if(obj.constructor === Object){
-		if(obj === {}){
-			return '{}'
+		// if(obj === {}){
+		// 	return '{}'
 			result = '{';
+			
 			_.each(obj, function(value, key){ 
 
-				if(typeof value === 'undefined' || typeof value === 'function'){
-					return '{}';
-				}
+				if(typeof value === 'function' || typeof value === 'undefined'){
+									return "{}";
+								}				
+					  			result += "\"" + key + "\":" + stringifyJSON(value, true);
+					  			result += ",";
 
-				result += '\"' + key + '\":' + stringifyJSON(value, true) + ',';
-				
-				});
+			});
 			console.log('Result for array', result);
 
 			if(result[result.length-1] === ","){
@@ -63,7 +64,7 @@ var stringifyJSON = function(obj) {
 		
 		return result += '}';
 		}	
-	}
+	
 	
 
 };
