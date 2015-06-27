@@ -4,5 +4,20 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-  // your code goes here
+	// Unstringifiables 
+	if (typeof obj == 'function') {
+		return '';
+	}
+
+	if (typeof obj == 'undefined') { 
+		return'';
+	}
+	
+	// Stringifiables' conditionals
+	if (obj === null || typeof obj === 'number' || typeof obj === 'boolean')
+	return '' + obj + '';
+
+	if (typeof obj === 'string') 
+		return '"'+obj+'"';
+}
 };
