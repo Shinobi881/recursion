@@ -29,7 +29,7 @@ var stringifyJSON = function(obj) {
 
 	// Object testing
 	if (obj.constructor === Array) {
-	  		if (isEmptyObject) {
+	  		if (isEmptyObject === []) {
 	  			return 'obj';
 	  		} else {
 	  			result = '['
@@ -41,8 +41,8 @@ var stringifyJSON = function(obj) {
 // -----------------------------------------------
 
 	if(obj.constructor === Object){
-		if(isEmptyObject){
-			return '{}'
+		if(obj === {}){
+			return 'obj'
 		} else {
 			result = '{';
 			_.each(obj, function(value, key){ result += '\'' + key + '\':' + stringifyJSON(value) + ','});
